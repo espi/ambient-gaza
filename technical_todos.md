@@ -14,7 +14,7 @@
 - [x] Create responsive single-page layout
 - [x] Implement dark/light mode toggle
 - [x] Create mobile-friendly navigation
-- [ ] Set up basic SEO optimization
+- [x] Set up basic SEO optimization
 
 ### Core Features
 - [ ] Implement PayPal donation button integration
