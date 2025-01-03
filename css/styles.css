@@ -6,13 +6,19 @@
     --text-color: #2a2a2a;
     --accent-color: #3498db;
     --spacing-unit: 1rem;
+    --header-height: 4rem;
 }
 
-/* Reset */
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: var(--header-height);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -20,10 +26,15 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    padding-top: var(--header-height);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Layout */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-unit);
@@ -31,23 +42,27 @@ body {
 
 .section {
     padding: calc(var(--spacing-unit) * 4) 0;
+    min-height: 50vh;
 }
 
-/* Header */
+/* Header and Navigation */
 .site-header {
     position: fixed;
     top: 0;
     width: 100%;
+    height: var(--header-height);
     background-color: var(--background-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-unit) var(--spacing-unit);
+    height: 100%;
 }
 
 .header-left {
@@ -110,51 +125,6 @@ body {
     transform: translateY(8px);
 }
 
-/* Mobile Navigation */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .main-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--background-color);
-        padding: 1rem 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .main-nav.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .menu-toggle.active .hamburger {
-        background: transparent;
-    }
-
-    .menu-toggle.active .hamburger::before {
-        transform: rotate(45deg);
-    }
-
-    .menu-toggle.active .hamburger::after {
-        transform: rotate(-45deg);
-    }
-} 
-
 /* Support Section */
 .support-content {
     max-width: 600px;
@@ -175,15 +145,12 @@ body {
     margin-top: 2rem;
 }
 
-.paypal-button-container {
-    margin: 1rem 0;
-}
-
 .donate-button {
     background: none;
     border: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    padding: 0;
 }
 
 .donate-button:hover {
@@ -195,98 +162,6 @@ body {
     color: var(--secondary-color);
     margin-top: 0.5rem;
 }
-
-/* Add to the existing media queries */
-@media (max-width: 768px) {
-    .support-content {
-        padding: 0 1rem;
-    }
-} 
-
-/* Music Section */
-.music-links {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.spotify-embed {
-    margin: 2rem 0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--background-color);
-    transition: box-shadow 0.3s ease;
-}
-
-.spotify-embed:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.spotify-embed iframe {
-    display: block;
-    background-color: transparent;
-}
-
-/* Bandcamp Section */
-.bandcamp-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.bandcamp-embed {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--background-color);
-    transition: box-shadow 0.3s ease;
-}
-
-.bandcamp-embed:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.bandcamp-embed iframe {
-    display: block;
-    background: transparent;
-}
-
-.purchase-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.purchase-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-}
-
-/* Add to existing media queries */
-@media (max-width: 768px) {
-    .music-links {
-        padding: 0 0.5rem;
-    }
-    
-    .spotify-embed,
-    .bandcamp-section {
-        margin: 1.5rem 0;
-    }
-
-    .purchase-button {
-        width: 100%;
-        text-align: center;
-    }
-} 
 
 /* Share Section */
 .share-section {
@@ -364,14 +239,160 @@ body {
     background-color: #2980b9;
 }
 
-/* Add to existing media queries */
+/* Responsive iframe containers */
+.responsive-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.responsive-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Spotify and Bandcamp specific adjustments */
+.spotify-embed {
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.bandcamp-embed {
+    margin: 2rem auto;
+    max-width: 700px;
+}
+
+/* Mobile Navigation */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--background-color);
+        padding: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .main-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .menu-toggle.active .hamburger {
+        background: transparent;
+    }
+
+    .menu-toggle.active .hamburger::before {
+        transform: rotate(45deg) translateY(0);
+    }
+
+    .menu-toggle.active .hamburger::after {
+        transform: rotate(-45deg) translateY(0);
+    }
+
+    /* Mobile touch targets */
+    .main-nav a,
+    .share-button,
+    .purchase-button {
+        padding: 0.75rem 1rem;
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section {
+        padding: calc(var(--spacing-unit) * 3) 0;
+        min-height: auto;
+    }
+
+    .spotify-embed,
+    .bandcamp-embed {
+        margin: 1.5rem auto;
+    }
+}
+
+/* Small screen optimizations */
+@media (max-width: 480px) {
+    :root {
+        --spacing-unit: 0.875rem;
+        --header-height: 3.5rem;
+    }
+
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    .container {
+        padding: 0 calc(var(--spacing-unit) * 0.75);
+    }
+
+    .share-buttons {
+        gap: 0.5rem;
+    }
+
     .share-buttons {
         flex-direction: column;
         align-items: stretch;
     }
+}
 
-    .share-button {
-        justify-content: center;
+/* Landscape mode adjustments */
+@media (max-height: 480px) and (orientation: landscape) {
+    .section {
+        min-height: auto;
+        padding: calc(var(--spacing-unit) * 2) 0;
+    }
+
+    .main-nav.active {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print styles */
+@media print {
+    .site-header {
+        position: static;
+    }
+    
+    body {
+        padding-top: 0;
+    }
+
+    .share-section,
+    .theme-toggle {
+        display: none;
     }
 } 
