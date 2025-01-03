@@ -161,13 +161,30 @@
                     <div class="donation-options">
                         <!-- PayPal Buttons Container -->
                         <div class="paypal-button-container">
-                            <form action="https://www.paypal.com/donate" method="post" target="_blank">
-                                <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
+                            <form action="https://www.paypal.com/donate" method="post" target="_blank"
+                                rel="noopener noreferrer">
+                                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
                                 <input type="hidden" name="currency_code" value="USD" />
-                                <button type="submit" class="donate-button">
-                                    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
-                                        alt="Donate with PayPal" />
-                                </button>
+                                <input type="hidden" name="item_name" value="Ambient Gaza Project Donation" />
+                                <!-- Smart payment buttons -->
+                                <div id="smart-button-container">
+                                    <div>
+                                        <select id="donation-amount" class="donation-select">
+                                            <option value="5">$5</option>
+                                            <option value="10">$10</option>
+                                            <option value="25" selected>$25</option>
+                                            <option value="50">$50</option>
+                                            <option value="100">$100</option>
+                                            <option value="custom">Custom Amount</option>
+                                        </select>
+                                        <input type="number" id="custom-amount" class="custom-amount"
+                                            placeholder="Enter amount" style="display: none;" />
+                                        <button type="submit" class="donate-button">
+                                            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                                                alt="Donate with PayPal" />
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <p class="donation-note">All donations are processed securely through PayPal</p>

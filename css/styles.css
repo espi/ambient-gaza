@@ -145,12 +145,52 @@ body {
     margin-top: 2rem;
 }
 
+#smart-button-container {
+    margin: 1rem 0;
+}
+
+.donation-select {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.donation-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.custom-amount {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 150px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.custom-amount:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
 .donate-button {
     background: none;
     border: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
     padding: 0;
+    margin-top: 1rem;
 }
 
 .donate-button:hover {

@@ -109,4 +109,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Donation form handling
+    const donationSelect = document.getElementById('donation-amount');
+    const customAmount = document.getElementById('custom-amount');
+    const donationForm = document.querySelector('.paypal-button-container form');
+
+    if (donationSelect && customAmount && donationForm) {
+        donationSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'custom') {
+                customAmount.style.display = 'block';
+                customAmount.focus();
+            } else {
+                customAmount.style.display = 'none';
+            }
+        });
+
+        donationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = donationSelect.value === 'custom' ? customAmount.value : donationSelect.value;
+
+            // Validate amount
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid donation amount');
+                return;
+            }
+
+            // Add amount to form
+            const amountInput = document.createElement('input');
+            amountInput.type = 'hidden';
+            amountInput.name = 'amount';
+            amountInput.value = amount;
+            donationForm.appendChild(amountInput);
+
+            // Submit form
+            donationForm.submit();
+        });
+    }
 }); 
