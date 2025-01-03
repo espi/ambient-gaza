@@ -1,0 +1,29 @@
+/* Dark mode styles */
+[data-theme="dark"] {
+    --primary-color: #ffffff;
+    --secondary-color: #cccccc;
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --accent-color: #3498db;
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .site-header {
+    background-color: var(--background-color);
+    box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: rgba(128,128,128,0.2);
+} 

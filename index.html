@@ -4,27 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supporting humanitarian efforts in Gaza through ambient music">
+
     <title>Ambient Gaza</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
 </head>
 
 <body>
-    <header>
-        <h1>Ambient Gaza</h1>
-        <nav>
-            <!-- Navigation will be added here -->
-        </nav>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-left">
+                <h1>Ambient Gaza</h1>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#listen">Listen</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
+        </div>
     </header>
 
     <main>
-        <!-- Content sections will be added here -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About the Project</h2>
+                <!-- Content will be added here -->
+            </div>
+        </section>
+
+        <section id="listen" class="section">
+            <div class="container">
+                <h2>Listen & Purchase</h2>
+                <div class="music-links">
+                    <!-- Spotify and Bandcamp embeds will go here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="section">
+            <div class="container">
+                <h2>Support the Cause</h2>
+                <!-- PayPal donation button will go here -->
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <!-- Footer content will be added here -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Ambient Gaza Project</p>
+            <nav class="footer-nav">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </nav>
+        </div>
     </footer>
 
-    <script src="/assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
