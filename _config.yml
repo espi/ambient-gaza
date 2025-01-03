@@ -1,0 +1,21 @@
+title: Ambient Gaza
+description: Supporting humanitarian efforts in Gaza through ambient music
+baseurl: ""
+url: "" # Replace with your GitHub Pages URL
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+
+# SEO settings
+lang: en
+author: Ambient Gaza Project
+twitter:
+  username: # Add if available
+  card: summary_large_image
+
+# Collections
+collections:
+  content:
+    output: true 

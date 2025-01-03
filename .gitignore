@@ -1,0 +1,16 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+
+# Build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Editor directories
+.idea/
+.vscode/ 
