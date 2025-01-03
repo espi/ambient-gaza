@@ -18,7 +18,7 @@
 
 ### Core Features
 - [x] Implement PayPal donation button integration
-- [ ] Set up Spotify embed player
+- [x] Set up Spotify embed player
 - [ ] Create Bandcamp purchase links
 - [ ] Add social sharing buttons
 
