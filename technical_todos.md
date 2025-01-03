@@ -17,7 +17,7 @@
 - [x] Set up basic SEO optimization
 
 ### Core Features
-- [ ] Implement PayPal donation button integration
+- [x] Implement PayPal donation button integration
 - [ ] Set up Spotify embed player
 - [ ] Create Bandcamp purchase links
 - [ ] Add social sharing buttons

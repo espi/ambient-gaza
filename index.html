@@ -91,7 +91,25 @@
         <section id="support" class="section">
             <div class="container">
                 <h2>Support the Cause</h2>
-                <!-- PayPal donation button will go here -->
+                <div class="support-content">
+                    <p>Your donation helps provide humanitarian aid to those in need in Gaza. All proceeds go directly
+                        to supporting essential services and relief efforts.</p>
+
+                    <div class="donation-options">
+                        <!-- PayPal Buttons Container -->
+                        <div class="paypal-button-container">
+                            <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                                <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <button type="submit" class="donate-button">
+                                    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                                        alt="Donate with PayPal" />
+                                </button>
+                            </form>
+                        </div>
+                        <p class="donation-note">All donations are processed securely through PayPal</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
