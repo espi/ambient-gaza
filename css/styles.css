@@ -228,13 +228,62 @@ body {
     background-color: transparent;
 }
 
+/* Bandcamp Section */
+.bandcamp-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.bandcamp-embed {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.bandcamp-embed:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.bandcamp-embed iframe {
+    display: block;
+    background: transparent;
+}
+
+.purchase-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.purchase-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
 /* Add to existing media queries */
 @media (max-width: 768px) {
     .music-links {
         padding: 0 0.5rem;
     }
     
-    .spotify-embed {
+    .spotify-embed,
+    .bandcamp-section {
         margin: 1.5rem 0;
+    }
+
+    .purchase-button {
+        width: 100%;
+        text-align: center;
     }
 } 
