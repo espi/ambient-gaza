@@ -335,6 +335,10 @@ body {
     background-color: #1877F2;
 }
 
+.share-button.tiktok {
+    background-color: #000000;
+}
+
 .share-button.copy-link {
     background-color: var(--accent-color);
 }
@@ -350,6 +354,10 @@ body {
 
 .share-button.facebook:hover {
     background-color: #0d66d9;
+}
+
+.share-button.tiktok:hover {
+    background-color: #333333;
 }
 
 .share-button.copy-link:hover {
