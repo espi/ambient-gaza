@@ -727,4 +727,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Cookie Consent Functionality
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptCookies = document.getElementById('accept-cookies');
+    const rejectCookies = document.getElementById('reject-cookies');
+
+    // Check if user has already made a choice
+    const hasConsent = localStorage.getItem('cookieConsent');
+
+    // Show cookie consent if no choice has been made
+    if (!hasConsent) {
+        setTimeout(() => {
+            cookieConsent.classList.add('show');
+        }, 1000);
+    }
+
+    // Handle accepting all cookies
+    acceptCookies.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        localStorage.setItem('cookiePreferences', JSON.stringify({
+            essential: true,
+            analytics: true,
+            marketing: true
+        }));
+        cookieConsent.classList.remove('show');
+        initializeAnalytics(); // Function to initialize analytics (to be implemented)
+    });
+
+    // Handle rejecting non-essential cookies
+    rejectCookies.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'rejected');
+        localStorage.setItem('cookiePreferences', JSON.stringify({
+            essential: true,
+            analytics: false,
+            marketing: false
+        }));
+        cookieConsent.classList.remove('show');
+    });
+
+    // Function to check cookie preferences
+    function getCookiePreferences() {
+        const preferences = localStorage.getItem('cookiePreferences');
+        return preferences ? JSON.parse(preferences) : null;
+    }
+
+    // Function to initialize analytics (placeholder)
+    function initializeAnalytics() {
+        const preferences = getCookiePreferences();
+        if (preferences && preferences.analytics) {
+            // Initialize analytics here
+            console.log('Analytics initialized');
+        }
+    }
+
+    // Initialize features based on cookie preferences
+    const preferences = getCookiePreferences();
+    if (preferences && preferences.analytics) {
+        initializeAnalytics();
+    }
+
 }); // End of DOMContentLoaded 
