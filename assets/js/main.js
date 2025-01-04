@@ -727,63 +727,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cookie Consent Functionality
-    const cookieConsent = document.getElementById('cookie-consent');
-    const acceptCookies = document.getElementById('accept-cookies');
-    const rejectCookies = document.getElementById('reject-cookies');
+    // Cookie Consent Management
+    const cookieConsent = {
+        init() {
+            if (!this.hasUserConsent()) {
+                this.showConsentModal();
+            }
+            this.bindEvents();
+        },
 
-    // Check if user has already made a choice
-    const hasConsent = localStorage.getItem('cookieConsent');
+        hasUserConsent() {
+            return localStorage.getItem('cookieConsent') !== null;
+        },
 
-    // Show cookie consent if no choice has been made
-    if (!hasConsent) {
-        setTimeout(() => {
-            cookieConsent.classList.add('show');
-        }, 1000);
-    }
+        showConsentModal() {
+            const modal = document.createElement('div');
+            modal.className = 'cookie-consent';
+            modal.innerHTML = `
+                <div class="container">
+                    <div class="cookie-consent-text">
+                        <h3>Cookie Settings</h3>
+                        <p>We use cookies to enhance your experience and analyze our website traffic. By clicking "Accept All", you consent to our use of cookies. Visit our <a href="cookies.html">Cookie Policy</a> to learn more.</p>
+                    </div>
+                    <div class="cookie-consent-actions">
+                        <button class="cookie-accept">Accept All</button>
+                        <button class="cookie-reject">Reject Non-Essential</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        },
 
-    // Handle accepting all cookies
-    acceptCookies.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'accepted');
-        localStorage.setItem('cookiePreferences', JSON.stringify({
-            essential: true,
-            analytics: true,
-            marketing: true
-        }));
-        cookieConsent.classList.remove('show');
-        initializeAnalytics(); // Function to initialize analytics (to be implemented)
-    });
+        bindEvents() {
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.cookie-accept')) {
+                    this.acceptAll();
+                } else if (e.target.matches('.cookie-reject')) {
+                    this.rejectNonEssential();
+                }
+            });
+        },
 
-    // Handle rejecting non-essential cookies
-    rejectCookies.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'rejected');
-        localStorage.setItem('cookiePreferences', JSON.stringify({
-            essential: true,
-            analytics: false,
-            marketing: false
-        }));
-        cookieConsent.classList.remove('show');
-    });
+        acceptAll() {
+            localStorage.setItem('cookieConsent', 'all');
+            this.hideConsentModal();
+            this.initializeAnalytics();
+        },
 
-    // Function to check cookie preferences
-    function getCookiePreferences() {
-        const preferences = localStorage.getItem('cookiePreferences');
-        return preferences ? JSON.parse(preferences) : null;
-    }
+        rejectNonEssential() {
+            localStorage.setItem('cookieConsent', 'essential');
+            this.hideConsentModal();
+        },
 
-    // Function to initialize analytics (placeholder)
-    function initializeAnalytics() {
-        const preferences = getCookiePreferences();
-        if (preferences && preferences.analytics) {
-            // Initialize analytics here
-            console.log('Analytics initialized');
+        hideConsentModal() {
+            const modal = document.querySelector('.cookie-consent');
+            if (modal) {
+                modal.remove();
+            }
+        },
+
+        initializeAnalytics() {
+            // Initialize analytics only if user has accepted all cookies
+            if (localStorage.getItem('cookieConsent') === 'all') {
+                // Add your analytics initialization code here
+                console.log('Analytics initialized');
+            }
         }
-    }
+    };
 
-    // Initialize features based on cookie preferences
-    const preferences = getCookiePreferences();
-    if (preferences && preferences.analytics) {
-        initializeAnalytics();
-    }
+    // Initialize cookie consent on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        cookieConsent.init();
+    });
 
 }); // End of DOMContentLoaded 
