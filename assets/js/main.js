@@ -150,11 +150,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Donation form handling
+    const donationForm = document.getElementById('donation-form');
     const donationSelect = document.getElementById('donation-amount');
     const customAmount = document.getElementById('custom-amount');
-    const donationForm = document.querySelector('.paypal-button-container form');
+    const tierButtons = document.querySelectorAll('.tier-select-button');
+    const recurringCheckbox = document.getElementById('recurring-donation');
 
-    if (donationSelect && customAmount && donationForm) {
+    // Handle tier selection
+    tierButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const amount = button.dataset.amount;
+            donationSelect.value = amount;
+            customAmount.style.display = 'none';
+
+            // Scroll to form
+            document.querySelector('.donation-form-container').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+    });
+
+    // Handle custom amount toggle
+    if (donationSelect && customAmount) {
         donationSelect.addEventListener('change', (e) => {
             if (e.target.value === 'custom') {
                 customAmount.style.display = 'block';
@@ -163,10 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 customAmount.style.display = 'none';
             }
         });
+    }
 
+    // Handle form submission
+    if (donationForm) {
         donationForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const amount = donationSelect.value === 'custom' ? customAmount.value : donationSelect.value;
+            const isRecurring = recurringCheckbox.checked;
 
             // Validate amount
             if (!amount || isNaN(amount) || amount <= 0) {
@@ -181,9 +203,69 @@ document.addEventListener('DOMContentLoaded', () => {
             amountInput.value = amount;
             donationForm.appendChild(amountInput);
 
+            // Add recurring flag if checked
+            if (isRecurring) {
+                const recurringInput = document.createElement('input');
+                recurringInput.type = 'hidden';
+                recurringInput.name = 'recurring';
+                recurringInput.value = '1';
+                donationForm.appendChild(recurringInput);
+            }
+
             // Submit form
             donationForm.submit();
         });
+    }
+
+    // Progress bar animation
+    const progressBar = document.querySelector('.progress-bar');
+    if (progressBar) {
+        // Animate progress bar on scroll into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressBar.style.width = progressBar.dataset.progress || '0%';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(progressBar);
+    }
+
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    if (stats.length) {
+        const animateValue = (element, start, end, duration) => {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    clearInterval(timer);
+                    current = end;
+                }
+                element.textContent = current.toLocaleString('en-US', {
+                    style: element.dataset.format === 'currency' ? 'currency' : 'decimal',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+            }, 16);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const value = parseFloat(element.textContent.replace(/[^0-9.-]+/g, ''));
+                    animateValue(element, 0, value, 2000);
+                    observer.unobserve(element);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        stats.forEach(stat => observer.observe(stat));
     }
 
     // Audio preview functionality

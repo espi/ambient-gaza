@@ -363,40 +363,182 @@
         <section id="support" class="section">
             <div class="container">
                 <h2>Support the Cause</h2>
-                <div class="support-content">
-                    <p>Your donation helps provide humanitarian aid to those in need in Gaza. All proceeds go directly
-                        to supporting essential services and relief efforts.</p>
+                <p class="section-intro">Your support directly impacts lives in Gaza. Choose how you'd like to
+                    contribute to our humanitarian efforts.</p>
 
-                    <div class="donation-options">
-                        <!-- PayPal Buttons Container -->
-                        <div class="paypal-button-container">
-                            <form action="https://www.paypal.com/donate" method="post" target="_blank"
-                                rel="noopener noreferrer">
-                                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
-                                <input type="hidden" name="currency_code" value="USD" />
-                                <input type="hidden" name="item_name" value="Ambient Gaza Project Donation" />
-                                <!-- Smart payment buttons -->
-                                <div id="smart-button-container">
-                                    <div>
-                                        <select id="donation-amount" class="donation-select">
-                                            <option value="5">$5</option>
-                                            <option value="10">$10</option>
-                                            <option value="25" selected>$25</option>
-                                            <option value="50">$50</option>
-                                            <option value="100">$100</option>
-                                            <option value="custom">Custom Amount</option>
-                                        </select>
-                                        <input type="number" id="custom-amount" class="custom-amount"
-                                            placeholder="Enter amount" style="display: none;" />
-                                        <button type="submit" class="donate-button">
-                                            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
-                                                alt="Donate with PayPal" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                <div class="support-content">
+                    <!-- Progress Tracking -->
+                    <div class="progress-tracker">
+                        <div class="progress-stats">
+                            <div class="progress-stat">
+                                <span class="stat-number">$12,450</span>
+                                <span class="stat-label">Raised so far</span>
+                            </div>
+                            <div class="progress-stat">
+                                <span class="stat-number">247</span>
+                                <span class="stat-label">Supporters</span>
+                            </div>
+                            <div class="progress-stat">
+                                <span class="stat-number">$25,000</span>
+                                <span class="stat-label">Current goal</span>
+                            </div>
                         </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 49.8%"></div>
+                        </div>
+                        <p class="progress-note">49.8% of our current goal - Help us reach $25,000</p>
+                    </div>
+
+                    <!-- Donation Tiers -->
+                    <div class="donation-tiers">
+                        <h3>Choose Your Impact</h3>
+                        <div class="tier-grid">
+                            <div class="tier-card">
+                                <div class="tier-header">
+                                    <h4>Supporter</h4>
+                                    <p class="tier-amount">$25</p>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>Provide essential supplies for one family</li>
+                                    <li>Digital thank you certificate</li>
+                                    <li>Project updates via email</li>
+                                </ul>
+                                <button class="tier-select-button" data-amount="25">Select</button>
+                            </div>
+                            <div class="tier-card featured">
+                                <div class="tier-header">
+                                    <h4>Champion</h4>
+                                    <p class="tier-amount">$50</p>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>Support multiple families</li>
+                                    <li>Exclusive digital content access</li>
+                                    <li>Monthly impact reports</li>
+                                    <li>Name in supporters gallery</li>
+                                </ul>
+                                <button class="tier-select-button" data-amount="50">Select</button>
+                            </div>
+                            <div class="tier-card">
+                                <div class="tier-header">
+                                    <h4>Guardian</h4>
+                                    <p class="tier-amount">$100</p>
+                                </div>
+                                <ul class="tier-features">
+                                    <li>Comprehensive aid package</li>
+                                    <li>All digital rewards</li>
+                                    <li>Quarterly video updates</li>
+                                    <li>Direct impact tracking</li>
+                                </ul>
+                                <button class="tier-select-button" data-amount="100">Select</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donation Form -->
+                    <div class="donation-form-container">
+                        <form id="donation-form" action="https://www.paypal.com/donate" method="post" target="_blank"
+                            rel="noopener noreferrer">
+                            <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
+                            <input type="hidden" name="currency_code" value="USD" />
+                            <input type="hidden" name="item_name" value="Ambient Gaza Project Donation" />
+
+                            <div class="form-group">
+                                <label for="donation-amount">Donation Amount</label>
+                                <div class="amount-input-group">
+                                    <select id="donation-amount" class="donation-select">
+                                        <option value="25">$25 - Supporter</option>
+                                        <option value="50" selected>$50 - Champion</option>
+                                        <option value="100">$100 - Guardian</option>
+                                        <option value="custom">Custom Amount</option>
+                                    </select>
+                                    <input type="number" id="custom-amount" class="custom-amount"
+                                        placeholder="Enter amount" style="display: none;" min="1" step="1" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="recurring" id="recurring-donation" />
+                                    Make this a monthly donation
+                                </label>
+                            </div>
+
+                            <button type="submit" class="donate-button">
+                                <span class="button-icon">💝</span>
+                                <span class="button-text">Donate Now</span>
+                            </button>
+                        </form>
                         <p class="donation-note">All donations are processed securely through PayPal</p>
+                    </div>
+
+                    <!-- Impact Breakdown -->
+                    <div class="impact-breakdown">
+                        <h3>Your Impact</h3>
+                        <div class="impact-grid">
+                            <div class="impact-card">
+                                <div class="impact-icon">🏥</div>
+                                <h4>Medical Aid</h4>
+                                <p>Providing essential medical supplies and supporting healthcare services</p>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">🥘</div>
+                                <h4>Food Security</h4>
+                                <p>Ensuring families have access to nutritious meals and clean water</p>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">📚</div>
+                                <h4>Education</h4>
+                                <p>Supporting educational programs and resources for children</p>
+                            </div>
+                            <div class="impact-card">
+                                <div class="impact-icon">🏗️</div>
+                                <h4>Infrastructure</h4>
+                                <p>Contributing to rebuilding essential community infrastructure</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transparency Section -->
+                    <div class="transparency-section">
+                        <h3>Transparency & Accountability</h3>
+                        <div class="transparency-grid">
+                            <div class="transparency-item">
+                                <h4>100% to Aid</h4>
+                                <p>All donations go directly to humanitarian efforts, with operational costs covered
+                                    separately</p>
+                            </div>
+                            <div class="transparency-item">
+                                <h4>Regular Updates</h4>
+                                <p>Monthly reports on fund allocation and impact metrics sent to all supporters</p>
+                            </div>
+                            <div class="transparency-item">
+                                <h4>Verified Partners</h4>
+                                <p>Working with established humanitarian organizations to ensure effective aid delivery
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alternative Support Methods -->
+                    <div class="alternative-support">
+                        <h3>Other Ways to Help</h3>
+                        <div class="support-methods-grid">
+                            <a href="#share" class="support-method">
+                                <div class="method-icon">📢</div>
+                                <h4>Spread the Word</h4>
+                                <p>Share our mission on social media</p>
+                            </a>
+                            <a href="#volunteer" class="support-method">
+                                <div class="method-icon">🤝</div>
+                                <h4>Volunteer</h4>
+                                <p>Join our global volunteer network</p>
+                            </a>
+                            <a href="#fundraise" class="support-method">
+                                <div class="method-icon">🎵</div>
+                                <h4>Host an Event</h4>
+                                <p>Organize a fundraising event</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
