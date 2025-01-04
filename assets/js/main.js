@@ -16,23 +16,23 @@ function initThemeToggle() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Music Player Handling
-    const spotifyEmbed = document.querySelector('.spotify-embed .responsive-embed');
-    const bandcampEmbed = document.querySelector('.bandcamp-embed .responsive-embed');
-    const spotifyIframe = spotifyEmbed?.querySelector('iframe');
-    const bandcampIframe = bandcampEmbed?.querySelector('iframe');
+    const spotifyPlayerEmbed = document.querySelector('.spotify-embed .responsive-embed');
+    const bandcampPlayerEmbed = document.querySelector('.bandcamp-embed .responsive-embed');
+    const spotifyPlayerIframe = spotifyPlayerEmbed?.querySelector('iframe');
+    const bandcampPlayerIframe = bandcampPlayerEmbed?.querySelector('iframe');
 
     // Add loading states
-    if (spotifyEmbed) spotifyEmbed.classList.add('loading');
-    if (bandcampEmbed) bandcampEmbed.classList.add('loading');
+    if (spotifyPlayerEmbed) spotifyPlayerEmbed.classList.add('loading');
+    if (bandcampPlayerEmbed) bandcampPlayerEmbed.classList.add('loading');
 
     // Handle Spotify embed
-    if (spotifyIframe) {
-        spotifyIframe.addEventListener('load', () => {
-            spotifyEmbed.classList.remove('loading');
+    if (spotifyPlayerIframe) {
+        spotifyPlayerIframe.addEventListener('load', () => {
+            spotifyPlayerEmbed.classList.remove('loading');
         });
 
-        spotifyIframe.addEventListener('error', () => {
-            spotifyEmbed.innerHTML = `
+        spotifyPlayerIframe.addEventListener('error', () => {
+            spotifyPlayerEmbed.innerHTML = `
                 <div class="embed-error">
                     <p>Failed to load Spotify player. Please try refreshing the page.</p>
                 </div>
@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle Bandcamp embed and theme
-    if (bandcampIframe) {
-        bandcampIframe.addEventListener('load', () => {
-            bandcampEmbed.classList.remove('loading');
+    if (bandcampPlayerIframe) {
+        bandcampPlayerIframe.addEventListener('load', () => {
+            bandcampPlayerEmbed.classList.remove('loading');
         });
 
-        bandcampIframe.addEventListener('error', () => {
-            bandcampEmbed.innerHTML = `
+        bandcampPlayerIframe.addEventListener('error', () => {
+            bandcampPlayerEmbed.innerHTML = `
                 <div class="embed-error">
                     <p>Failed to load Bandcamp player. Please try refreshing the page.</p>
                 </div>
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
 
     function updateBandcampTheme(isDark) {
-        if (bandcampIframe) {
+        if (bandcampPlayerIframe) {
             const baseUrl = 'https://bandcamp.com/EmbeddedPlayer/album=2550048061/size=large/';
             const params = new URLSearchParams({
                 bgcol: isDark ? '333333' : 'ffffff',
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 artwork: 'small',
                 transparent: 'true'
             });
-            bandcampIframe.src = `${baseUrl}${params.toString()}/`;
+            bandcampPlayerIframe.src = `${baseUrl}${params.toString()}/`;
         }
     }
 
@@ -210,4 +210,64 @@ document.addEventListener('DOMContentLoaded', () => {
             audioPreview.load();
         }, { once: true });
     }
+
+    // Track preview functionality
+    const previewButtons = document.querySelectorAll('.preview-button');
+    let currentAudio = null;
+    let currentButton = null;
+
+    previewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const previewUrl = button.dataset.preview;
+
+            // If there's already a preview playing
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentButton.classList.remove('playing');
+
+                // If clicking the same button, just stop playback
+                if (currentButton === button) {
+                    currentAudio = null;
+                    currentButton = null;
+                    return;
+                }
+            }
+
+            // Play new preview
+            const audio = new Audio(previewUrl);
+            audio.addEventListener('ended', () => {
+                button.classList.remove('playing');
+                currentAudio = null;
+                currentButton = null;
+            });
+
+            audio.play().catch(error => {
+                console.error('Error playing preview:', error);
+                button.innerHTML = `
+                    <span class="preview-icon">⚠️</span>
+                    <span class="preview-text">Error</span>
+                `;
+            });
+
+            button.classList.add('playing');
+            currentAudio = audio;
+            currentButton = button;
+        });
+    });
+
+    // Stop preview playback when starting Spotify or Bandcamp players
+    [spotifyPlayerIframe, bandcampPlayerIframe].forEach(iframe => {
+        if (iframe) {
+            iframe.addEventListener('load', () => {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    currentButton.classList.remove('playing');
+                    currentAudio = null;
+                    currentButton = null;
+                }
+            });
+        }
+    });
 }); 

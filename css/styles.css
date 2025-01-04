@@ -959,4 +959,216 @@ h2 {
         width: 100px;
         height: 100px;
     }
+}
+
+/* Listen & Purchase Section */
+.section-intro {
+    text-align: center;
+    color: var(--secondary-color);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+}
+
+/* Track List */
+.track-list {
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-medium);
+}
+
+.tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.track-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: var(--radius-medium);
+    background: var(--background-color);
+    transition: all var(--transition-medium);
+}
+
+.track-item:hover {
+    transform: translateX(4px);
+    background: var(--accent-soft);
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.track-number {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border-radius: 50%;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.track-details h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.track-duration {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+.preview-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border-radius: var(--radius-medium);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.preview-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-small);
+}
+
+.preview-button.playing .preview-icon {
+    content: "⏸";
+}
+
+/* Purchase Options */
+.purchase-section {
+    margin: 3rem 0;
+}
+
+.purchase-options {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.purchase-card {
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    padding: 2rem;
+    box-shadow: var(--shadow-medium);
+    text-align: center;
+}
+
+.purchase-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.features {
+    list-style: none;
+    margin: 1.5rem 0;
+    padding: 0;
+}
+
+.features li {
+    margin: 0.5rem 0;
+    color: var(--secondary-color);
+}
+
+.features li::before {
+    content: "✓";
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+/* Exclusive Content */
+.exclusive-content {
+    margin: 3rem 0;
+}
+
+.exclusive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.exclusive-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-medium);
+}
+
+.exclusive-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+}
+
+.exclusive-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.exclusive-item h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.exclusive-item p {
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .exclusive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .track-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .preview-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .exclusive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .track-details h4 {
+        font-size: 0.875rem;
+    }
+
+    .track-duration {
+        font-size: 0.75rem;
+    }
 } 
