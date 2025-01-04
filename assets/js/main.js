@@ -15,9 +15,48 @@ function initThemeToggle() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Music Player Handling
+    const spotifyEmbed = document.querySelector('.spotify-embed .responsive-embed');
+    const bandcampEmbed = document.querySelector('.bandcamp-embed .responsive-embed');
+    const spotifyIframe = spotifyEmbed?.querySelector('iframe');
+    const bandcampIframe = bandcampEmbed?.querySelector('iframe');
+
+    // Add loading states
+    if (spotifyEmbed) spotifyEmbed.classList.add('loading');
+    if (bandcampEmbed) bandcampEmbed.classList.add('loading');
+
+    // Handle Spotify embed
+    if (spotifyIframe) {
+        spotifyIframe.addEventListener('load', () => {
+            spotifyEmbed.classList.remove('loading');
+        });
+
+        spotifyIframe.addEventListener('error', () => {
+            spotifyEmbed.innerHTML = `
+                <div class="embed-error">
+                    <p>Failed to load Spotify player. Please try refreshing the page.</p>
+                </div>
+            `;
+        });
+    }
+
+    // Handle Bandcamp embed and theme
+    if (bandcampIframe) {
+        bandcampIframe.addEventListener('load', () => {
+            bandcampEmbed.classList.remove('loading');
+        });
+
+        bandcampIframe.addEventListener('error', () => {
+            bandcampEmbed.innerHTML = `
+                <div class="embed-error">
+                    <p>Failed to load Bandcamp player. Please try refreshing the page.</p>
+                </div>
+            `;
+        });
+    }
+
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
-    const bandcampIframe = document.querySelector('.bandcamp-embed iframe');
 
     function updateBandcampTheme(isDark) {
         if (bandcampIframe) {

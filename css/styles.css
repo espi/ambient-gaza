@@ -303,9 +303,29 @@ body {
     max-width: 800px;
 }
 
+.spotify-embed .responsive-embed {
+    padding-bottom: 380px; /* Fixed height for Spotify player */
+}
+
 .bandcamp-embed {
     margin: 2rem auto;
     max-width: 700px;
+}
+
+.bandcamp-embed .responsive-embed {
+    padding-bottom: 120px; /* Fixed height for Bandcamp player */
+}
+
+/* Add loading state styles */
+.responsive-embed.loading {
+    background-color: var(--background-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
 }
 
 /* Mobile Navigation */
