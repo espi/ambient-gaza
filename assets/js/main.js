@@ -185,4 +185,29 @@ document.addEventListener('DOMContentLoaded', () => {
             donationForm.submit();
         });
     }
+
+    // Audio preview functionality
+    const audioPreview = document.getElementById('ambient-preview');
+    const playButton = document.getElementById('play-preview');
+
+    if (audioPreview && playButton) {
+        playButton.addEventListener('click', () => {
+            if (audioPreview.paused) {
+                audioPreview.play();
+                playButton.classList.add('playing');
+            } else {
+                audioPreview.pause();
+                playButton.classList.remove('playing');
+            }
+        });
+
+        audioPreview.addEventListener('ended', () => {
+            playButton.classList.remove('playing');
+        });
+
+        // Preload audio when user interacts with the page
+        document.addEventListener('click', () => {
+            audioPreview.load();
+        }, { once: true });
+    }
 }); 
