@@ -1,0 +1,10 @@
+A contemplative ambient album preserving the living soundscapes of Gaza - a musical archive of daily life, culture, and resilience. Each listen generates direct support for humanitarian aid through streaming royalties.
+
+Social Context: As Gaza faces unprecedented humanitarian challenges, people worldwide seek meaningful ways to engage, remember, and support. This project offers a unique form of solidarity through active listening and direct impact.
+
+Concept: Ambient Gaza preserves precious soundscapes of daily life in Gaza - from olive harvests to children's play, from beach waves to market conversations. Created by the Ambient Gaza Collective and released by Sonic Ecology, each track weaves these authentic sounds into contemplative ambient compositions. By listening, you participate in both cultural preservation and active support - each stream generates royalties directed to humanitarian aid. The project emerged from Perera's sound installations at London vigils, where Gaza's everyday sounds created powerful connections with listeners.
+
+Fundraising: Through the simple act of listening, supporters generate meaningful aid. Each 20-24 hours of streaming creates approximately £1 in royalties, with 95-99% directed to humanitarian support. A dedicated community of 1,000 listeners can generate £30,000 monthly in aid. A transparent advisory panel guides fund distribution to verified NGOs. The remaining small percentage ensures continued promotion and community engagement, maximizing long-term impact.
+
+Process: The Ambient Gaza Collective carefully curates authentic pre-2023 soundscapes of Gaza life, working with archivists, residents, and documentarians. Our established label and distribution partnerships ensure wide platform availability. A dedicated team manages soundscape collection, music creation, and community engagement while maintaining focus on the project's mission rather than individual recognition. All audio undergoes thorough review to protect privacy and dignity.
+
