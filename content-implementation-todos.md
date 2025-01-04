@@ -92,6 +92,29 @@
   - [ ] Minify assets
   - [ ] Implement lazy loading
   - [ ] Add caching headers
+- [ ] Add missing assets
+  - [ ] Sound map audio files
+    - [ ] market.mp3 (Morning Market in Gaza City)
+    - [ ] waves.mp3 (Mediterranean Waves)
+    - [ ] prayer.mp3 (Evening Call to Prayer)
+  - [ ] Story images
+    - [ ] story1.jpg (Medical supplies delivery)
+    - [ ] story2.jpg (Children's education program)
+    - [ ] story3.jpg (Food distribution center)
+  - [ ] Gallery images
+    - [ ] gallery1.jpg (Hope Through Art)
+    - [ ] gallery2.jpg (Street Music)
+    - [ ] gallery3.jpg (Together We Rise)
+  - [ ] Resource documents
+    - [ ] Cultural Heritage Guide (PDF)
+    - [ ] Musical Traditions Overview (Video)
+    - [ ] Humanitarian Aid Report (Doc)
+    - [ ] Press Kit (ZIP)
+    - [ ] Project Artwork (IMG)
+    - [ ] Brand Guidelines (Doc)
+    - [ ] Event Planning Guide (PDF)
+    - [ ] Fundraising Templates (Doc)
+    - [ ] Safety Guidelines (PDF)
 
 ## 10. Testing & Quality Assurance
 - [x] Test responsive layout

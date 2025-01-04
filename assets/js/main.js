@@ -103,28 +103,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu functionality
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.querySelector('.main-nav');
-    const navLinks = document.querySelectorAll('.main-nav a');
 
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            mainNav.classList.toggle('active');
         });
-    });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.site-header')) {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-        }
-    });
+        // Close menu when clicking a link
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.site-header')) {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+            }
+        });
+    }
 
     // Share functionality
     const copyLinkButton = document.querySelector('.copy-link');
@@ -529,160 +532,130 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Community Gallery
-    const galleryGrid = document.getElementById('community-gallery');
-    const loadMoreBtn = document.getElementById('load-more-gallery');
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const loadMoreBtn = document.querySelector('.load-more-btn');
     let currentPage = 1;
 
-    if (galleryGrid && loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', async () => {
+    async function loadMoreGalleryItems() {
+        try {
+            // Simulate loading more items
+            const newItems = [
+                {
+                    image: 'https://placehold.co/800x600/234/fff?text=Community+Art',
+                    title: 'Community Art Project',
+                    description: 'Local artists coming together'
+                },
+                {
+                    image: 'https://placehold.co/800x600/234/fff?text=Music+Session',
+                    title: 'Street Music Session',
+                    description: 'Sharing culture through music'
+                },
+                {
+                    image: 'https://placehold.co/800x600/234/fff?text=Youth+Program',
+                    title: 'Youth Engagement',
+                    description: 'Building future leaders'
+                }
+            ];
+
+            newItems.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h5>${item.title}</h5>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            currentPage++;
+
+            // Hide load more button after loading all items
+            if (currentPage >= 3) {
+                loadMoreBtn.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error loading gallery items:', error);
+        }
+    }
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', loadMoreGalleryItems);
+    }
+
+    // Contribution Form
+    const contributionForm = document.querySelector('.contribution-form');
+    if (contributionForm) {
+        contributionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contributionForm);
+            const submitBtn = contributionForm.querySelector('button[type="submit"]');
+
             try {
-                // Simulate loading more items
-                loadMoreBtn.textContent = 'Loading...';
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
 
-                // Add new gallery items
-                const newItems = [
-                    {
-                        image: 'assets/images/gallery/gallery4.jpg',
-                        title: 'Community Spirit',
-                        author: 'Maya H.'
-                    },
-                    {
-                        image: 'assets/images/gallery/gallery5.jpg',
-                        title: 'Musical Heritage',
-                        author: 'Karim S.'
-                    },
-                    {
-                        image: 'assets/images/gallery/gallery6.jpg',
-                        title: 'Unity in Art',
-                        author: 'Nour A.'
+                // Simulate form submission
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'alert alert-success';
+                successMessage.textContent = 'Thank you for your contribution! We will review it shortly.';
+                contributionForm.insertAdjacentElement('beforebegin', successMessage);
+
+                // Reset form
+                contributionForm.reset();
+
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 5000);
+            } catch (error) {
+                console.error('Error submitting contribution:', error);
+
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-error';
+                errorMessage.textContent = 'An error occurred. Please try again later.';
+                contributionForm.insertAdjacentElement('beforebegin', errorMessage);
+
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Contribution';
+            }
+        });
+    }
+
+    // Resource Center
+    const resourceGroups = document.querySelectorAll('.resource-group');
+    resourceGroups.forEach(group => {
+        const heading = group.querySelector('h4');
+        const list = group.querySelector('.resource-list');
+
+        if (heading && list) {
+            heading.addEventListener('click', () => {
+                const isExpanded = list.style.maxHeight;
+
+                // Collapse all other lists
+                document.querySelectorAll('.resource-list').forEach(otherList => {
+                    if (otherList !== list) {
+                        otherList.style.maxHeight = null;
                     }
-                ];
-
-                newItems.forEach(item => {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    galleryItem.innerHTML = `
-                        <img src="${item.image}" alt="${item.title}" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h5>${item.title}</h5>
-                            <p>By ${item.author}</p>
-                        </div>
-                    `;
-                    galleryGrid.appendChild(galleryItem);
                 });
 
-                currentPage++;
-                if (currentPage >= 3) {
-                    loadMoreBtn.style.display = 'none';
-                } else {
-                    loadMoreBtn.textContent = 'Load More';
-                }
-            } catch (error) {
-                console.error('Error loading gallery items:', error);
-                loadMoreBtn.textContent = 'Error loading items';
-            }
-        });
-    }
-
-    // Contribution Buttons
-    const submitArtworkBtn = document.getElementById('submit-artwork-btn');
-    const uploadMusicBtn = document.getElementById('upload-music-btn');
-
-    if (submitArtworkBtn) {
-        submitArtworkBtn.addEventListener('click', () => {
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h3>Submit Artwork</h3>
-                    <form id="artwork-form" class="story-form">
-                        <div class="form-group">
-                            <label for="artwork-title">Artwork Title</label>
-                            <input type="text" id="artwork-title" name="title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="artwork-description">Description</label>
-                            <textarea id="artwork-description" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="artwork-file">Upload Artwork</label>
-                            <input type="file" id="artwork-file" name="artwork" accept="image/*" required>
-                        </div>
-                        <button type="submit" class="submit-button">Submit Artwork</button>
-                    </form>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-            handleModal(modal);
-        });
-    }
-
-    if (uploadMusicBtn) {
-        uploadMusicBtn.addEventListener('click', () => {
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h3>Upload Music</h3>
-                    <form id="music-form" class="story-form">
-                        <div class="form-group">
-                            <label for="track-title">Track Title</label>
-                            <input type="text" id="track-title" name="title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="track-description">Description</label>
-                            <textarea id="track-description" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="track-file">Upload Audio File</label>
-                            <input type="file" id="track-file" name="track" accept="audio/*" required>
-                        </div>
-                        <button type="submit" class="submit-button">Upload Track</button>
-                    </form>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-            handleModal(modal);
-        });
-    }
-
-    // Helper function for modal handling
-    function handleModal(modal) {
-        const closeBtn = modal.querySelector('.close-modal');
-        const form = modal.querySelector('form');
-
-        closeBtn.addEventListener('click', () => {
-            modal.remove();
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.remove();
-            }
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Here you would typically send the form data to your server
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <h3>Thank You!</h3>
-                    <p>Your submission has been received. We'll review it and get back to you soon.</p>
-                    <button class="close-button">Close</button>
-                </div>
-            `;
-
-            const closeButton = modal.querySelector('.close-button');
-            closeButton.addEventListener('click', () => {
-                modal.remove();
+                // Toggle current list
+                list.style.maxHeight = isExpanded ? null : `${list.scrollHeight}px`;
             });
-        });
-    }
+        }
+    });
 
     // Newsletter Form Handling
     const newsletterForm = document.getElementById('newsletter-form');
@@ -799,5 +772,29 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('DOMContentLoaded', () => {
         cookieConsent.init();
     });
+
+    const soundData = [
+        {
+            name: "Morning Market",
+            category: "urban",
+            location: [31.5017, 34.4668],
+            description: "The bustling sounds of Gaza City's morning market",
+            audioUrl: "https://assets.mixkit.co/music/preview/mixkit-market-day-568.mp3"
+        },
+        {
+            name: "Mediterranean Waves",
+            category: "nature",
+            location: [31.5225, 34.4512],
+            description: "Peaceful waves along Gaza's Mediterranean coast",
+            audioUrl: "https://assets.mixkit.co/music/preview/mixkit-waves-and-birds-165.mp3"
+        },
+        {
+            name: "Evening Call to Prayer",
+            category: "cultural",
+            location: [31.5139, 34.4503],
+            description: "The melodic evening call to prayer echoing through the city",
+            audioUrl: "https://assets.mixkit.co/music/preview/mixkit-spiritual-moment-538.mp3"
+        }
+    ];
 
 }); // End of DOMContentLoaded 
