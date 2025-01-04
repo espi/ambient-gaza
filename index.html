@@ -49,6 +49,13 @@
         }
     }
     </script>
+
+    <!-- Add Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Add Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body>
@@ -642,18 +649,18 @@
 
                     <!-- Sound Map -->
                     <div class="sound-map-container">
-                        <h4>Sound Map of Gaza</h4>
-                        <p>Explore the sonic landscape of Gaza through our interactive map. Click on locations to hear
-                            authentic soundscapes and stories from different areas.</p>
-                        <div class="sound-map" id="gaza-sound-map">
-                            <!-- Map will be initialized by JavaScript -->
-                            <div class="map-loading">Loading sound map...</div>
-                        </div>
+                        <h3>Gaza Soundscape Map</h3>
+                        <p>Explore the sounds of Gaza through this interactive map. Click on markers to listen to
+                            ambient recordings from different locations.</p>
+
+                        <div id="sound-map" class="sound-map"></div>
+
                         <div class="sound-controls">
-                            <button class="sound-control-btn" id="play-all-sounds">
-                                <span class="control-icon">▶</span>
+                            <button class="sound-control-btn" id="play-all">
+                                <span class="btn-icon">▶</span>
                                 Play All Sounds
                             </button>
+
                             <div class="sound-filters">
                                 <button class="filter-btn active" data-category="all">All</button>
                                 <button class="filter-btn" data-category="nature">Nature</button>
@@ -854,6 +861,7 @@
 
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/map.js"></script>
 </body>
 
 </html>

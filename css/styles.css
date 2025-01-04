@@ -2309,11 +2309,9 @@ h2 {
 .sound-map {
     width: 100%;
     height: 400px;
-    background: var(--accent-soft);
     border-radius: var(--radius-medium);
     margin: 1.5rem 0;
-    position: relative;
-    overflow: hidden;
+    box-shadow: var(--shadow-medium);
 }
 
 .map-loading {
@@ -2329,6 +2327,8 @@ h2 {
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .sound-control-btn {
@@ -2504,13 +2504,17 @@ h2 {
 
     .sound-controls {
         flex-direction: column;
-        gap: 1rem;
+        align-items: stretch;
     }
 
     .sound-filters {
+        justify-content: center;
+    }
+
+    .sound-control-btn,
+    .filter-btn {
         width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
     }
 }
 
