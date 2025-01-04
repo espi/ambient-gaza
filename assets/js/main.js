@@ -729,6 +729,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             document.body.appendChild(modal);
+            // Ensure the modal is visible
+            modal.style.display = 'block';
         },
 
         bindEvents() {
@@ -768,10 +770,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Initialize cookie consent on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        cookieConsent.init();
-    });
+    // Initialize cookie consent immediately when script loads
+    cookieConsent.init();
 
     const soundData = [
         {
