@@ -684,4 +684,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Newsletter Form Handling
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const email = emailInput.value;
+
+            // Validate email
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = newsletterForm.querySelector('.subscribe-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
+
+            try {
+                // Here you would typically send the email to your server
+                // For now, we'll simulate a successful subscription
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Show success message
+                newsletterForm.innerHTML = `
+                    <div class="success-message">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <p>Thank you for subscribing! We'll keep you updated on our latest news and impact stories.</p>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error subscribing to newsletter:', error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                alert('Failed to subscribe. Please try again later.');
+            }
+        });
+    }
+
 }); // End of DOMContentLoaded 
