@@ -675,6 +675,184 @@
                 </div>
             </div>
         </section>
+
+        <section id="community" class="section">
+            <div class="container">
+                <h2>Community Hub</h2>
+                <p class="section-intro">Join our global community of artists, activists, and supporters. Access
+                    resources, share your stories, and connect with others passionate about making a difference.</p>
+
+                <!-- Resource Center -->
+                <div class="resource-center">
+                    <h3>Resource Center</h3>
+                    <div class="resources-grid">
+                        <!-- Educational Materials -->
+                        <div class="resource-card">
+                            <div class="resource-icon">📚</div>
+                            <h4>Educational Materials</h4>
+                            <p>Learn about Gaza's cultural heritage, music traditions, and current humanitarian needs.
+                            </p>
+                            <ul class="resource-list">
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type pdf">PDF</span>
+                                        Cultural Heritage Guide
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type video">Video</span>
+                                        Musical Traditions Overview
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type doc">Doc</span>
+                                        Humanitarian Aid Report
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Media Kit -->
+                        <div class="resource-card">
+                            <div class="resource-icon">🎨</div>
+                            <h4>Media Kit</h4>
+                            <p>Access promotional materials, artwork, and press resources for the Ambient Gaza project.
+                            </p>
+                            <ul class="resource-list">
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type zip">ZIP</span>
+                                        Press Kit Download
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type img">IMG</span>
+                                        Project Artwork
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type doc">Doc</span>
+                                        Brand Guidelines
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Event Guidelines -->
+                        <div class="resource-card">
+                            <div class="resource-icon">📅</div>
+                            <h4>Event Guidelines</h4>
+                            <p>Resources for organizing and hosting fundraising events in your community.</p>
+                            <ul class="resource-list">
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type pdf">PDF</span>
+                                        Event Planning Guide
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type doc">Doc</span>
+                                        Fundraising Templates
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="resource-link">
+                                        <span class="resource-type pdf">PDF</span>
+                                        Safety Guidelines
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Elements -->
+                <div class="interactive-elements">
+                    <h3>Interactive Features</h3>
+
+                    <!-- Sound Map -->
+                    <div class="sound-map-container">
+                        <h4>Sound Map of Gaza</h4>
+                        <p>Explore the sonic landscape of Gaza through our interactive map. Click on locations to hear
+                            authentic soundscapes and stories from different areas.</p>
+                        <div class="sound-map" id="gaza-sound-map">
+                            <!-- Map will be initialized by JavaScript -->
+                            <div class="map-loading">Loading sound map...</div>
+                        </div>
+                        <div class="sound-controls">
+                            <button class="sound-control-btn" id="play-all-sounds">
+                                <span class="control-icon">▶</span>
+                                Play All Sounds
+                            </button>
+                            <div class="sound-filters">
+                                <button class="filter-btn active" data-category="all">All</button>
+                                <button class="filter-btn" data-category="nature">Nature</button>
+                                <button class="filter-btn" data-category="urban">Urban</button>
+                                <button class="filter-btn" data-category="cultural">Cultural</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community Gallery -->
+                    <div class="community-gallery">
+                        <h4>Community Gallery</h4>
+                        <p>A collection of photos, artwork, and stories shared by our community members.</p>
+                        <div class="gallery-grid" id="community-gallery">
+                            <!-- Gallery items will be populated by JavaScript -->
+                            <div class="gallery-item">
+                                <img src="assets/images/gallery/gallery1.jpg" alt="Community artwork" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <h5>Hope Through Art</h5>
+                                    <p>By Sarah M.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/gallery/gallery2.jpg" alt="Local music performance"
+                                    loading="lazy">
+                                <div class="gallery-overlay">
+                                    <h5>Street Music</h5>
+                                    <p>By Ahmed K.</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/images/gallery/gallery3.jpg" alt="Community event" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <h5>Together We Rise</h5>
+                                    <p>By Leila R.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="load-more-btn" id="load-more-gallery">Load More</button>
+                    </div>
+
+                    <!-- Contribution CTA -->
+                    <div class="contribute-cta">
+                        <h4>Share Your Contribution</h4>
+                        <p>Add your voice to our growing community. Share your stories, artwork, or music inspired by
+                            the project.</p>
+                        <div class="contribution-buttons">
+                            <button class="contribute-btn" id="share-story-btn">
+                                <span class="btn-icon">📝</span>
+                                Share Your Story
+                            </button>
+                            <button class="contribute-btn" id="submit-artwork-btn">
+                                <span class="btn-icon">🎨</span>
+                                Submit Artwork
+                            </button>
+                            <button class="contribute-btn" id="upload-music-btn">
+                                <span class="btn-icon">🎵</span>
+                                Upload Music
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">

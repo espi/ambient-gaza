@@ -486,4 +486,202 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Community Hub - Sound Map
+    const soundMap = document.getElementById('gaza-sound-map');
+    const playAllSoundsBtn = document.getElementById('play-all-sounds');
+    const soundFilters = document.querySelectorAll('.filter-btn');
+
+    if (soundMap) {
+        // Initialize map (using a mapping service like Leaflet.js or Google Maps)
+        // This is a placeholder for the actual map implementation
+        const initMap = () => {
+            soundMap.querySelector('.map-loading').style.display = 'none';
+            // Add map initialization code here
+        };
+
+        // Load map after a short delay to simulate loading
+        setTimeout(initMap, 1000);
+
+        // Handle sound filters
+        soundFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                soundFilters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                // Add filter functionality here
+            });
+        });
+
+        // Handle play all sounds
+        if (playAllSoundsBtn) {
+            playAllSoundsBtn.addEventListener('click', () => {
+                const isPlaying = playAllSoundsBtn.classList.contains('playing');
+                if (isPlaying) {
+                    playAllSoundsBtn.classList.remove('playing');
+                    playAllSoundsBtn.querySelector('.control-icon').textContent = '▶';
+                    // Stop all sounds
+                } else {
+                    playAllSoundsBtn.classList.add('playing');
+                    playAllSoundsBtn.querySelector('.control-icon').textContent = '⏸';
+                    // Play all sounds
+                }
+            });
+        }
+    }
+
+    // Community Gallery
+    const galleryGrid = document.getElementById('community-gallery');
+    const loadMoreBtn = document.getElementById('load-more-gallery');
+    let currentPage = 1;
+
+    if (galleryGrid && loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', async () => {
+            try {
+                // Simulate loading more items
+                loadMoreBtn.textContent = 'Loading...';
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Add new gallery items
+                const newItems = [
+                    {
+                        image: 'assets/images/gallery/gallery4.jpg',
+                        title: 'Community Spirit',
+                        author: 'Maya H.'
+                    },
+                    {
+                        image: 'assets/images/gallery/gallery5.jpg',
+                        title: 'Musical Heritage',
+                        author: 'Karim S.'
+                    },
+                    {
+                        image: 'assets/images/gallery/gallery6.jpg',
+                        title: 'Unity in Art',
+                        author: 'Nour A.'
+                    }
+                ];
+
+                newItems.forEach(item => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>${item.title}</h5>
+                            <p>By ${item.author}</p>
+                        </div>
+                    `;
+                    galleryGrid.appendChild(galleryItem);
+                });
+
+                currentPage++;
+                if (currentPage >= 3) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.textContent = 'Load More';
+                }
+            } catch (error) {
+                console.error('Error loading gallery items:', error);
+                loadMoreBtn.textContent = 'Error loading items';
+            }
+        });
+    }
+
+    // Contribution Buttons
+    const submitArtworkBtn = document.getElementById('submit-artwork-btn');
+    const uploadMusicBtn = document.getElementById('upload-music-btn');
+
+    if (submitArtworkBtn) {
+        submitArtworkBtn.addEventListener('click', () => {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Submit Artwork</h3>
+                    <form id="artwork-form" class="story-form">
+                        <div class="form-group">
+                            <label for="artwork-title">Artwork Title</label>
+                            <input type="text" id="artwork-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="artwork-description">Description</label>
+                            <textarea id="artwork-description" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="artwork-file">Upload Artwork</label>
+                            <input type="file" id="artwork-file" name="artwork" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="submit-button">Submit Artwork</button>
+                    </form>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            handleModal(modal);
+        });
+    }
+
+    if (uploadMusicBtn) {
+        uploadMusicBtn.addEventListener('click', () => {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Upload Music</h3>
+                    <form id="music-form" class="story-form">
+                        <div class="form-group">
+                            <label for="track-title">Track Title</label>
+                            <input type="text" id="track-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="track-description">Description</label>
+                            <textarea id="track-description" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="track-file">Upload Audio File</label>
+                            <input type="file" id="track-file" name="track" accept="audio/*" required>
+                        </div>
+                        <button type="submit" class="submit-button">Upload Track</button>
+                    </form>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            handleModal(modal);
+        });
+    }
+
+    // Helper function for modal handling
+    function handleModal(modal) {
+        const closeBtn = modal.querySelector('.close-modal');
+        const form = modal.querySelector('form');
+
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>Thank You!</h3>
+                    <p>Your submission has been received. We'll review it and get back to you soon.</p>
+                    <button class="close-button">Close</button>
+                </div>
+            `;
+
+            const closeButton = modal.querySelector('.close-button');
+            closeButton.addEventListener('click', () => {
+                modal.remove();
+            });
+        });
+    }
+
 }); // End of DOMContentLoaded 
