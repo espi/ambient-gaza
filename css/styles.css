@@ -133,7 +133,7 @@ h2 {
     display: flex;
     align-items: center;
     padding: calc(var(--spacing-unit) * 4) 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/assets/images/photos/6b1c6ab3-palestine-091123-ap.webp');
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../assets/images/photos/6b1c6ab3-palestine-091123-ap.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
