@@ -352,4 +352,138 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-}); 
+
+    // Impact Stories Section
+    const shareStoryBtn = document.getElementById('share-story-btn');
+    if (shareStoryBtn) {
+        shareStoryBtn.addEventListener('click', () => {
+            // Create modal for story submission
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Share Your Story</h3>
+                    <form id="story-form" class="story-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="story">Your Story</label>
+                            <textarea id="story" name="story" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="media">Add Photos (optional)</label>
+                            <input type="file" id="media" name="media" accept="image/*" multiple>
+                        </div>
+                        <button type="submit" class="submit-button">Submit Story</button>
+                    </form>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Handle modal close
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.addEventListener('click', () => {
+                modal.remove();
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+
+            // Handle form submission
+            const storyForm = modal.querySelector('#story-form');
+            storyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would typically send the form data to your server
+                // For now, we'll just show a success message
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3>Thank You!</h3>
+                        <p>Your story has been submitted successfully. We'll review it and share it with our community soon.</p>
+                        <button class="close-button">Close</button>
+                    </div>
+                `;
+
+                const closeButton = modal.querySelector('.close-button');
+                closeButton.addEventListener('click', () => {
+                    modal.remove();
+                });
+            });
+        });
+    }
+
+    // Animate story cards on scroll
+    const storyCards = document.querySelectorAll('.story-card');
+    if (storyCards.length) {
+        const storyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    storyObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        storyCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            storyObserver.observe(card);
+        });
+    }
+
+    // Animate timeline items on scroll
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (timelineItems.length) {
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                    timelineObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            timelineObserver.observe(item);
+        });
+    }
+
+    // Animate voice cards on scroll
+    const voiceCards = document.querySelectorAll('.voice-card');
+    if (voiceCards.length) {
+        const voiceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    voiceObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        voiceCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
+            voiceObserver.observe(card);
+        });
+    }
+
+}); // End of DOMContentLoaded 

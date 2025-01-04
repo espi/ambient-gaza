@@ -1484,4 +1484,434 @@ h2 {
     .track-duration {
         font-size: 0.75rem;
     }
+}
+
+/* Impact Stories Section */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.story-card {
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-medium);
+}
+
+.story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+}
+
+.story-media {
+    position: relative;
+    padding-top: 60%;
+    overflow: hidden;
+}
+
+.story-media img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-medium);
+}
+
+.story-card:hover .story-media img {
+    transform: scale(1.05);
+}
+
+.story-content {
+    padding: 1.5rem;
+}
+
+.story-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-soft);
+    color: var(--accent-color);
+    border-radius: var(--radius-small);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.story-content h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+.story-content p {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.story-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--accent-soft);
+}
+
+.story-date {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+.read-more {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--transition-medium);
+}
+
+.read-more:hover {
+    color: var(--gradient-end);
+}
+
+/* Project Updates Timeline */
+.updates-section {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+}
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border: 2px solid var(--background-color);
+}
+
+.timeline-content {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+    transition: all var(--transition-medium);
+}
+
+.timeline-content:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.timeline-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.timeline-content p {
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.update-date {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--secondary-color);
+}
+
+/* Community Voices */
+.voices-section {
+    margin: 4rem 0;
+}
+
+.voices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.voice-card {
+    background: var(--background-color);
+    border-radius: var(--radius-large);
+    padding: 2rem;
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-medium);
+}
+
+.voice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+}
+
+.voice-quote blockquote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.voice-quote blockquote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+    font-size: 3rem;
+    color: var(--accent-color);
+    opacity: 0.5;
+    line-height: 1;
+}
+
+.voice-quote cite {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+    font-style: normal;
+    margin-top: 1rem;
+}
+
+/* Submit Story CTA */
+.submit-story-cta {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--accent-soft), transparent);
+    border-radius: var(--radius-large);
+}
+
+.submit-story-cta h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.submit-story-cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: var(--secondary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .stories-grid,
+    .voices-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stories-grid,
+    .voices-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-media {
+        padding-top: 50%;
+    }
+
+    .timeline::before {
+        left: 1rem;
+    }
+
+    .timeline-item {
+        padding-left: 3rem;
+    }
+
+    .timeline-marker {
+        left: 7px;
+    }
+
+    .voice-quote blockquote {
+        font-size: 0.875rem;
+        padding-left: 1.5rem;
+    }
+
+    .submit-story-cta {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--background-color);
+    padding: 2rem;
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-large);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: color var(--transition-medium);
+}
+
+.close-modal:hover {
+    color: var(--text-color);
+}
+
+.story-form {
+    margin-top: 1.5rem;
+}
+
+.story-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.story-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.story-form input[type="text"],
+.story-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--accent-soft);
+    border-radius: var(--radius-medium);
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all var(--transition-medium);
+}
+
+.story-form input[type="text"]:focus,
+.story-form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: var(--shadow-small);
+}
+
+.story-form input[type="file"] {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radius-medium);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.close-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius-medium);
+    background: var(--background-color);
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.close-button:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Modal Adjustments */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .story-form input[type="text"],
+    .story-form textarea {
+        padding: 0.5rem;
+    }
 } 
