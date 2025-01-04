@@ -98,6 +98,7 @@ h2 {
 
 .section {
     position: relative;
+    padding: calc(var(--spacing-unit) * 4) 0;
     overflow: hidden;
 }
 
@@ -108,11 +109,35 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--accent-soft), transparent);
-    opacity: 0.5;
+    background-image: 
+        radial-gradient(circle at 100% 0%, var(--accent-soft) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, var(--accent-soft) 0%, transparent 50%);
+    opacity: 0.4;
     z-index: -1;
-    transform: skewY(-6deg);
-    transform-origin: top left;
+}
+
+/* Alternate section styling */
+.section:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.section:nth-child(even)::before {
+    background-image: 
+        radial-gradient(circle at 0% 0%, var(--accent-soft) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, var(--accent-soft) 0%, transparent 50%);
+}
+
+/* Hero section specific background */
+.hero-section {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    padding: calc(var(--spacing-unit) * 4) 0;
+    background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 100%);
+}
+
+.hero-section::before {
+    display: none;
 }
 
 /* Header and Navigation */
